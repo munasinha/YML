@@ -1,0 +1,16 @@
+.test-container{
+    border: 2px solid gray;
+    padding:10px;
+    border-radius: 5px;  
+    display: flex;
+}
+
+.test-container .test{
+    padding:5px;
+    margin:5px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
