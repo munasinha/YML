@@ -23,6 +23,11 @@
     ?>
         <link rel='stylesheet' type="text/css" href="../css/test_style.css"/>
         <link rel='stylesheet' type="text/css" href="../css/tags.css"/>
+        <style>
+            li:hover{
+                background-color:#f2f2f2;
+            }
+        </style>
     </head>
 
     <body>
@@ -140,17 +145,8 @@
                             <label class="control-label">Doctor Name</label>
                         </div>
                         <div class="col-md-3">
-                            <select name="doctor" class="form-control">
-                                <?php 
-                                
-                                while($doc_row=$doc_res->fetch_assoc()){?>
-
-                                    <option value=<?php echo $doc_row['doctor_id'];?>><?php echo "Dr. ". $doc_row['first_name']." ".$doc_row['last_name']?></option>
-                                <?php
-                                }
-                                ?>
-                                <option value="0">Other</option>
-                            </select>   
+                            <input type="text" name="doctor" class="form-control" id="doctor">  
+                            <div id="response"></div>
                         </div>
 
                         <div class="col-md-3">
@@ -174,9 +170,9 @@
                     <div class="container" id="tests">
                         <div class="test-container">
                             <div class="col-md-3">
-                                <input type="text" class="form-control" placeholder="Test" id="test" name="test">    
-                           </div>
-                           <span class="test">FBC &nbsp;<span class="glyphicon glyphicon-remove"></span></span>
+                                <input type="text" name="test" id="test" class="form-control" autocomplete="off">
+                                <div id="test_div"></div>
+                            </div>
                         </div>
                     </div>    
                     <div class="row" >
@@ -201,44 +197,157 @@
             </div>
         </div>
     </body>
-    <?php
-    include '../includes/bootstrap_script_includes.php';
-
-    ?>
-        <script type="text/javascript" src="../js/autofill.js"></script>
-        <script type="text/javascript" src="../js/tags.js"></script>
-        
-        <script type="text/javascript">
-           $(document).ready(function(){
-                var d=[];
-                var data;
-              
-                $("#test").keydown(function(){
-                    var query = $("#test").val();
-                    
-                    $.ajax(
-                        {
-                            url:'../controller/appointment_controller.php?status=search_test',
-                            method: 'POST',
-                            data:{
-                                search:1,
-                                q:query
-                            },
-                            success:function(data_1){
-                                d = data_1;
-                            },
-                            dataType:'text'
-                        }
-                    );
-                    
+    <?php   include '../includes/bootstrap_script_includes.php'; ?>
+     
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(window).keydown(function(event){
+                if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+                }
+            });
+        });
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#doctor").keyup(function(){
+                var query = $("#doctor").val();
+                $.ajax(
+                    {
+                        url:'../controller/thirdparty_controller.php?status=get_doc_name',
+                        method:'POST',
+                        data:{
+                            search:1,
+                            q:query
+                        },
+                        success:function(data){
+                            $("#response").html(data);
+                        },
+                        dataType:'text'
+                    }
+                );
+                $(document).on('click','li',function(){
+                    var doc = $(this).text();
+                    tags.push(doc);
+                    addTags(); 
+                    $("#doctor").val(doc);
+                    $("#response").html("");
                 });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            window.count = 0;
+            const tagContainer = document.querySelector('.test-container');
+            const input = document.querySelector('.test-container input');
+            var tags = [];
+
+            function createTag(label){
+                const div = document.createElement('div');
+                div.setAttribute('class','test');
                 
-                /*$("#test").autofill({
-                                       
-                });*/
+                const space = document.createElement('div');
+                space.innerHTML = '&nbsp;&nbsp;';
+                
+                const span = document.createElement('span');
+                span.innerHTML = label;
 
-           });
-           
-        </script>
+                const select = document.createElement('select');
+                select.setAttribute('class',"form-control");
+                select.setAttribute('name',"lab"+count);
 
+                var values = [];
+                $.ajax(
+                    {
+                        url:'../controller/thirdparty_controller.php?status=get_all_labs',
+                        method:'POST',
+                        success:function(data){
+                            var a = JSON.parse(data);
+                            for(var i=0;i<a.length;i++){
+                                values.push(a[i]); 
+                                var option = document.createElement("option");
+                                option.value = values[i].lab_id;
+                                option.text =  values[i].lab_name; 
+                                select.appendChild(option); 
+                            }  
+                        },
+                        dataType:'text'
+                    }
+
+                );
+               
+                const closeBtn = document.createElement('i');
+                closeBtn.setAttribute('class','glyphicon glyphicon-remove');
+                closeBtn.setAttribute('data-item',label);
+
+                div.appendChild(span);
+                div.appendChild(space);
+                div.appendChild(select);
+                div.appendChild(space);
+                div.appendChild(closeBtn);
+                return div;
+            }
+            function removeDouble(){
+                document.querySelectorAll('.test').forEach(function(tag){
+                    tag.parentElement.removeChild(tag);
+                });
+            }
+            function addTags(){
+                removeDouble();
+                tags.slice().reverse().forEach(function(tag){
+                    const input = createTag(tag);
+                    tagContainer.prepend(input);
+                });
+            }
+            
+            input.addEventListener('keydown',function(e){
+                if(e.keyCode == 13){
+                    tags.push(input.value);
+                    addTags();
+                    input.value='';        
+                }
+            });
+            document .addEventListener('click',function(e){
+                if(e.target.tagName == 'I'){
+                    const val = e.target.getAttribute('data-item');
+                    const index= tags.indexOf(val);
+                    tags=[...tags.slice(0,index),...tags.slice(index+1)] ;
+                    addTags();
+                }
+            });
+
+            $("#test").keyup(function(){
+                var v = $("#test").val();
+                if(v!=""){
+                    $.ajax(
+                    {
+                        url:"../controller/appointment_controller.php?status=get_test_name&ltr="+v,
+                        method:'POST',
+                        data:{
+                            search:1,
+                            q:v
+                        },
+                        success:function(data){
+                            $("#test_div").html(data);
+                        },
+                        dataType:'text'
+                    }
+                    );
+                    $(document).on('click','li',function(){
+                        var test = $(this).text();
+                        $("#test").val(test);
+                        $("#test_div").html("");
+                        
+                    });     
+                }
+                
+            });
+        });
+
+    </script>
 </html>
+

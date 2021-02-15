@@ -42,26 +42,7 @@
         <div class="row">
             <?php include_once("../includes/side-nav.php");?>
             <div class="col-md-9">
-                <?php  
-                   /* if(isset($_GET["msg"]))
-                    {
-                ?>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-danger">
-                                <?php
-
-                                $msg=$_REQUEST["msg"];
-                                $msg=  base64_decode($msg);
-                                echo $msg;
-                                ?>
-
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                    }*/
-                ?>
+                
                 <ul class="nav nav-tabs" role="tablist" >
                     <li class="nav-item">
                         <a href="#sum" class="nav-link <?php if(!isset($_GET['tab'])){?> active <?php } ?>" role="tab" data-toggle="tab">Summary</a>

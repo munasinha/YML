@@ -100,13 +100,11 @@ if(isset($_REQUEST["status"])){
             <?php
 
             }
+        break;
 
-
-        break; 
-        case "search_test":
-            
+        case "search_test":  
             if(isset($_POST['search'])){
-                $app_res = $app_obj-> get_tests();
+                $app_res = $app_obj-> get_tests_name($_POST['q']);
                 $response = array();
                 while($app_row = $app_res->fetch_assoc()){
                     $response[] = $app_row;
@@ -114,7 +112,21 @@ if(isset($_REQUEST["status"])){
                 print_r($response);
                 exit($response);
             }
+        break;
 
+        case "get_test_name":
+            $ltr = $_GET['ltr'];
+            $app_res = $app_obj->get_tests_name($ltr);
+            $response = "";
+
+            if($app_res->num_rows>0){
+                $response = "<ul class='form-control' style='list-style:none'>";
+                while($row = $app_res->fetch_assoc()){
+                    $response .= "<li>".$row['test_name']."</li>";   
+                }
+                $response .= "</ul>";
+            }
+            exit($response);
         break;
     }
 }

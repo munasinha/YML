@@ -1,6 +1,3 @@
-<?php
-    include '../commons/session.php';
-?>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
@@ -30,16 +27,26 @@
     
     <body >
         <div class="container">
+        <div class="row">
+                <div class="col-md-12">&nbsp;</div>
+            </div>
+            <div class="row">
+                <?php include_once('../includes/top_row.php');?>
+            </div>
             <div class="row">
                 <div class="col-md-12">&nbsp;</div>
             </div>
-             <?php
-                //include '../includes/top_row.php';
-            ?>
-            
+            <div class="row">
+                <h1 style="text-align:center;">Employee Profile</h1>
+            </div>
             <div class="row">
                 <div class="col-md-12">&nbsp;</div>
             </div>
+        </div>
+
+        <?php include_once("../includes/side-nav.php");?>
+
+        <div class="col-md-9">
             <div class="row">
                 <div class="col-md-2">
                         <?php

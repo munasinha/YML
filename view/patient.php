@@ -52,7 +52,7 @@
             </div>
             
             <div class="tab-content" >
-                <div role="tabpanel" class="tab-pane  <?php if(!(isset($_REQUEST['tab']))){?>active<?php }?>" id="sum">
+                <div role="tabpanel" class="tab-pane <?php if(!(isset($_REQUEST['tab']))){?>active<?php }?>" id="sum">
                     <div class="row">
                         <div class="col-md-3 col-md-offset-1 panel" style="height: 200px;background-color:#1b4f3c">
                             <h1 style="color: #FFF;text-align:center;">Total Patients</h1>
@@ -92,26 +92,26 @@
                 
                 <div role="tabpanel" class="tab-pane" id="add_patient">
 
-                <div class="row">
-                    <?php
-                    if(isset($_GET["msg"]))
-                    {
-                    ?>
-                    <div class="col-md-12">
-                        <div class="alert alert-danger">
-                            <?php
+                    <div class="row">
+                        <?php
+                        if(isset($_GET["msg"]))
+                        {
+                        ?>
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                <?php
 
-                            $msg=$_REQUEST["msg"];
-                            $msg=  base64_decode($msg);
-                            echo $msg;
-                            ?>
+                                $msg=$_REQUEST["msg"];
+                                $msg=  base64_decode($msg);
+                                echo $msg;
+                                ?>
 
+                            </div>
                         </div>
-                    </div>
 
-                    <?php
-                    }
-                    ?>
+                        <?php
+                        }
+                        ?>
 
                     </div>
 
@@ -236,6 +236,7 @@
                     </form>
                 </div>
                 
+
                 <div role="tabpanel" class="tab-pane" id="search">
                     <div class="row">
                         <div class="col-md-4">

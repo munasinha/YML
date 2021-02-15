@@ -66,7 +66,13 @@ class Thirdparty{
         $results=$con->query($sql);
         return $results;       
     }
-
+    function get_docs_name($name)
+    {
+        $con=$GLOBALS['con'];
+        $sql="SELECT * FROM doctor WHERE (first_name LIKE '%$name%' or last_name LIKE '%$name%')";
+        $results=$con->query($sql);
+        return $results;       
+    }
     function get_doc_details($id){
         $con=$GLOBALS['con'];
         $sql="SELECT * FROM doctor WHERE doctor_id=$id";

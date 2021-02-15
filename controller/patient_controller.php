@@ -309,19 +309,35 @@ if(isset($_REQUEST["status"])){
                                     <th>Pending Tests</th>
                                 </tr>";
            
-            $emp_id =0;         
+                     
             while($res_row = $res->fetch_assoc()){
-                        
+                $p_id =$res_row['patient_id'];
+                $p_id = base64_encode($p_id); 
+                
+                //get this to a different function-------------------------
+                    $bday = new DateTime($res_row['d_o_b']); //date of birth
+                    $today = new Datetime(date('m.d.y'));
+                    $diff = $today->diff($bday); 
+                    $age = 0;
+                    if($diff->y > 0){
+                        $age= $diff->y." y";
+                    }         
+                    else if($diff->y > 0){
+                        $age= $diff->m." m";
+                    }
+                    else{
+                        $age= $diff->d." days";
+                    }
+                //--------------------------------------------------------
+
                 $output .= "<tr style='background-color:lightgray'>
                     <th style='text-align:center'>".$res_row['patient_id']."</th>
                     <th style='text-align:center'>".$res_row['nic']."</th>
                     <th style='text-align:center'>".$res_row['patient_f_name']." ".$res_row['patient_l_name']."</th>
-                    <th style='text-align:center'>".$res_row['d_o_b']."</th>
+                    <th style='text-align:center'>".$age."</th>
                     <th style='text-align:center'>".$res_row['house_no']." ".$res_row['street']." ".$res_row['town']."</th>
                     <th style='text-align:center'>".$res_row['telephone_number']."</th>
-                    <th style='text-align:center'><a href='employee-changepw.php?user_id=$emp_id' class='btn btn-primary'>
-                    &nbsp;Change Password
-                    </a></th>
+                    <th><a href='patient-edit.php?id=".$p_id."' class='btn btn-primary'>Edit Patient</a></th>
                 </tr>";
             }
             $output .= "</table>";

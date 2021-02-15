@@ -132,12 +132,21 @@ class Patient{
         $results=$con->query($sql);
         return $results; 
     }
+    
+    
     function deactivateUser($id){
         $con=$GLOBALS['con']; 
-        $sql="UPDATE patient SET patient_status=0 WHERE patient_id='$id'";
-        $results=$con->query($sql);
+        $sql="UPDATE patient SET patient_status=0 WHERE patient_id=?";
+        $results=$con->prepare($sql);
+        $result->bind_param("s",$id);
+        $result->execute();
         return $results;  
     }
+
+
+
+
+    
     function activateUser($id){
         $con=$GLOBALS['con']; 
         $sql="UPDATE patient SET patient_status=1 WHERE patient_id='$id'";

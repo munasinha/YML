@@ -1,6 +1,3 @@
-<?php
-    include '../commons/session.php';
-?>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"/>
@@ -29,16 +26,26 @@
     
     <body >
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">&nbsp;</div>
-            </div>
-             <?php
-                //include '../includes/top_row.php';
-            ?>
             
             <div class="row">
                 <div class="col-md-12">&nbsp;</div>
             </div>
+            <div class="row">
+                <?php include_once('../includes/top_row.php');?>
+            </div>
+            <div class="row">
+                <div class="col-md-12">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <h1 style="text-align:center">Patient Profile</h1>
+                </div>
+            </div>
+        </div>
+
+        <?php include_once("../includes/side-nav.php");?>
+
+        <div class="col-md-9">
             <div class="row">
                 <div class="col-md-2">
                         <?php
@@ -78,10 +85,7 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-4" >
-                        <img src="../images/patient_image/<?php echo $patient_row["image_url"]; ?>" width="200px" height="200px"/>
-                    </div>
-
+                    
                     <div class="col-md-8">
                         <p style="font-size:28px">Personal Information </p>
                         <table class="table table-responsive" id="example">

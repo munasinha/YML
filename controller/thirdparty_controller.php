@@ -373,5 +373,28 @@ if(isset($_REQUEST["status"])){
             <?php
             }
         break;
+        case "get_doc_name":
+            $name = $_POST['q'];
+            $res = $third_obj->get_docs_name($name);
+            $response = "Other";
+            if($res->num_rows>0){
+                $response = "<ul class='form-control' style='list-style:none'>";
+                while($row = $res->fetch_assoc()){
+                    $response .= "<li>Dr. ".$row['first_name']." ".$row['last_name']."</li>";   
+                }
+                $response .= "</ul>";
+            }
+            exit($response);          
+        break;
+        case "get_all_labs":
+            $res = $third_obj->get_all_labs();
+            $response = [];
+
+            while($row = $res->fetch_assoc()){
+                array_push($response,$row);
+            }
+            
+            exit(json_encode($response));
+        break;
     }
 }

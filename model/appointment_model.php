@@ -31,7 +31,7 @@ class Appointment{
 
     function get_tests_name($name){
         $con=$GLOBALS['con'];
-        $sql="SELECT * FROM test WHERE test_name LIKE '%$name%' ";
+        $sql="SELECT * FROM test WHERE test_name LIKE '$name%' ";
         $results=$con->query($sql);
         return $results; 
     }
@@ -60,8 +60,7 @@ class Appointment{
         return $appointment_id;
     }
 
-    function add_app_tests($appointment_id,$test_id,$lab_id)
-    {
+    function add_app_tests($appointment_id,$test_id,$lab_id){
         $con=$GLOBALS["con"];
         $sql="INSERT INTO appointment_test(appointment_id,test_id,lab_id)VALUES('$appointment_id','$test_id','$lab_id')";
         $result = $con->query($sql)or die($con->error);
