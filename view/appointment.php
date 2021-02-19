@@ -370,6 +370,7 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
                     </div>
                     
                     <div role="tabpanel" class="tab-pane" id="history">

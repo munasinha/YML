@@ -85,7 +85,7 @@ if(isset($_REQUEST["status"])){
                         $msg = "Successfully created the appointment";
                         $msg = base64_encode($msg);
                         ?>
-                        <script> window.location="../view/appointment-add.php?msg=<?php echo $msg;  ?>"</script>
+                        <script> window.location="../view/appointment.php?msg=<?php echo $msg;  ?>"</script>
                         <?php
                     }else{
                         throw new Exception("Error in inserting Appointment");    

@@ -236,7 +236,6 @@
                     </form>
                 </div>
                 
-
                 <div role="tabpanel" class="tab-pane" id="search">
                     <div class="row">
                         <div class="col-md-4">
@@ -253,10 +252,7 @@
                             
                         </div>
                     </div>
-
                 </div>
-                
-
             </div>
         </div>
     </body>
