@@ -68,10 +68,7 @@
             <div class="row">
                 <div class="col-md-12">&nbsp;</div>
             </div>
-
-        
-        
-            
+    
                 <div class="col-md-12" >
                     <?php
                         $counter=0;
@@ -105,12 +102,9 @@
                         $counter++;
                         if($counter%3==0){
                     ?>
-                    
                         <div class="row">
                             <div class="col-md-12">&nbsp;</div>
                         </div>
-                    
-                
                     <?php
                         }
                     }                  
