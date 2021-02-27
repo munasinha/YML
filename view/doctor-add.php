@@ -78,55 +78,53 @@
 
                 <div class="col-md-3">
                     <label class="control-label">First Name</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" name="fname" class="form-control" id="fname" />
-                        </div>
-
-                    <div class="col-md-3">
-                        <label class="control-label">Last Name</label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" name="lname" class="form-control" id="lname" />
-                        </div>
-
                 </div>
-                <div class="row">
-                    <div class="col-md-12">&nbsp;</div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-3">
-                        <label class="control-label">Contact Number</label>
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" name="cno" class="form-control"  id="cno" />
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-md-12">&nbsp;</div>
+                <div class="col-md-3">
+                    <input type="text" name="fname" class="form-control" id="fname" />
                 </div>
 
-                <div class="row">
-                    <div class="col-md-5">
-                        &nbsp;
-                    </div>
-                    <div class="col-md-5">
-                        <button type="submit" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;  Save
-                        </button>
-                        <button type="reset" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-refresh"></span>&nbsp;  Reset
-                        </button>
-                    </div>
-
+                <div class="col-md-3">
+                    <label class="control-label">Last Name</label>
                 </div>
-                </form>
+                <div class="col-md-3">
+                    <input type="text" name="lname" class="form-control" id="lname" />
+                </div>
+            </div>
+        
+
+            <div class="row">
+                <div class="col-md-12">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="control-label">Contact Number</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="cno" class="form-control"  id="cno" />
+                </div>        
+            </div>
+            <div class="row">
+                <div class="col-md-12">&nbsp;</div>
             </div>
 
-
-        </body>
+            <div class="row">
+                <div class="col-md-5">
+                    &nbsp;
+                </div>
+                <div class="col-md-5">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;  Save
+                    </button>
+                    <button type="reset" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-refresh"></span>&nbsp;  Reset
+                    </button>
+                </div>
+            </div>
+        <div>
+        </div>
+        </form>
+    </body>
+    
     <?php
     include '../includes/bootstrap_script_includes.php';
 
