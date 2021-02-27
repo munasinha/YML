@@ -286,39 +286,469 @@
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="test">
-                        <?php  
-                            if(isset($_GET["msg"])){
-                        ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-danger">
-                                            <?php
-                                                $msg=$_REQUEST["msg"];
-                                                $msg=  base64_decode($msg);
-                                                echo $msg;
-                                            ?>
+                        <div class="row">
+                            &nbsp;
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">Highest Income Tests</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_today(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_today(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_today(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h2>
+                            </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                        <?php
-                            }
-                        ?>
-
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div> 
+                            
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">Least Income Tests</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_last_week(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_week(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_week(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h1>
+                            </div>
+                        </div>                    
+                        
                         <div class="row">
                             &nbsp;
                         </div>
                         
-                        <div class="col-md-12"> 
-                            <h1>Test<h1>
+                        <div class="row">
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">Most Frequant Tests</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_last_month(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h2>
+                            </div>
+
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div> 
+                            
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">Least Frequant Tests</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_last_month(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h2>
+                            </div>
                         </div>
                     </div>                             
 
                     <div role="tabpanel" class="tab-pane" id="doc">
+                    <div class="row">
+                            &nbsp;
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">Doctors with most Tests</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_today(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_today(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_today(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h2>
+                            </div>
+
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div> 
+                            
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">Doctors with least Tests</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_last_week(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_week(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_week(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h1>
+                            </div>
+                        </div>                    
+                        
                         <div class="row">
                             &nbsp;
                         </div>
-                        <h1>Add Doc<h1>
+                        
+                        <div class="row">
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">ASDF</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_last_month(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h2>
+                            </div>
+
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div> 
+                            
+                            <div class="col-md-4" style="height: 250px;background-color:#1b4f3c">
+                                <h1 style="color: #FFF;text-align:center;">GSDL</h1>
+                                <h2 style="color: #FFF;text-align:center;margin:auto;">
+                                    <?php 
+                                        $sum = 0;
+                                        $fin_res=$fin_obj->get_last_month(1);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Yasas 0.00"; 
+                                        }else{
+                                            echo "Yasas ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(2);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Asiri 0.00"; 
+                                        }else{
+                                            echo "Asiri ". $fin_row['t'];
+                                            $sum += $fin_row['t']; 
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                        $fin_res=$fin_obj->get_last_month(3);
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Lanka 0.00"; 
+                                        }else{
+                                            echo "Lanka ". $fin_row['t']; 
+                                            $sum += $fin_row['t'];
+                                        }
+                                    ?>
+                                </h2>
+                                <h2 style="color: #FFF;text-align:center;margin:auto">
+                                    <?php 
+                                    /* $fin_res=$fin_obj->get_today_total();
+                                        $fin_row=$fin_res->fetch_assoc();
+                                        if($fin_row['t'] == 0){
+                                            echo "Total 0.00"; 
+                                        }else{
+                                            $fin_row=$fin_res->fetch_assoc();*/
+                                            echo "Total ". $sum; 
+                                        //}
+                                    ?>
+                                </h2>
+                            </div>
+                        </div>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="lab">
